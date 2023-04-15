@@ -42,19 +42,6 @@ const Header = () => {
     setNav(!nav);
   };
 
-  let menuRef = useRef();
-
-  useEffect(() => {
-    const handler = (event) => {
-      if (!menuRef.current.contains(event.target)) {
-        setNav(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
-    return () => {
-      document.removeEventListener("mousedown", handler);
-    };
-  });
   return (
     <div className="font-poppin">
       <div className="hidden lg:w-full h-full bg-primary text-white lg:flex flex-col p-10 left-0 top-0">
@@ -139,7 +126,6 @@ const Header = () => {
             ? "lg:hidden fixed left-0 top-0 w-[80%] h-full bg-primary border-r border-r-special_green flex flex-col p-5 py-8 z-30 ease-in-out duration-300"
             : "fixed left-[-100%]"
         }
-        ref={menuRef}
       >
         <div className="flex items-center justify-between">
           <BsXLg size={30} className="text-white" onClick={handleClick} />

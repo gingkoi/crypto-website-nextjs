@@ -115,7 +115,7 @@ const Header = () => {
         <div
           className={`${
             nav
-              ? "bg-black/80 h-full w-[100%] z-0 top-0 left-0 ease-in-out duration-300 fixed lg:hidden"
+              ? "bg-black/80 h-full w-[100%] z-0 top-0 left-0 ease-in-out duration-300 fixed lg:hidden blur-3xl"
               : "fixed left-[-100%]"
           }`}
         ></div>
@@ -123,7 +123,7 @@ const Header = () => {
       <div
         className={
           nav
-            ? "lg:hidden fixed left-0 top-0 w-[80%] h-full bg-primary border-r border-r-special_green flex flex-col p-5 py-8 z-30 ease-in-out duration-300"
+            ? "lg:hidden fixed left-0 top-0 w-[80%] md:w-[60%] h-full bg-primary border-r border-r-special_green flex flex-col p-5 py-8 z-30 ease-in-out duration-300"
             : "fixed left-[-100%]"
         }
       >

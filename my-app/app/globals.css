@@ -23,3 +23,8 @@
   );
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#421576",endColorstr="#180732",GradientType=1);
 }
+@media screen and (max-width: 720px) {
+  .hide-mobile {
+    display: none;
+  }
+}

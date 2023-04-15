@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { RiCoinsLine } from "react-icons/ri";
 import {
   BsCreditCard2Back,
@@ -41,9 +41,23 @@ const Header = () => {
   const handleClick = () => {
     setNav(!nav);
   };
+
+  let menuRef = useRef();
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (!menuRef.current.contains(event.target)) {
+        setNav(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  });
   return (
     <div className="font-poppin">
-      <div className="hidden lg:w-full h-screen bg-primary text-white lg:flex flex-col p-10 left-0 top-0">
+      <div className="hidden lg:w-full h-full bg-primary text-white lg:flex flex-col p-10 left-0 top-0">
         <div className="max-w-[300px] mx-auto">
           <div className="text-4xl font-bold italic uppercase">
             Carbon-Trade
@@ -103,21 +117,37 @@ const Header = () => {
           </div>
         </div>
       </div>
-      <div className="lg:hidden left-0 top-0 w-[60px] h-screen bg-primary flex justify-center py-8 border-r border-r-special_green">
+      <div className="lg:hidden left-0 top-0 w-[50px] h-full bg-black flex justify-center py-8 border-r border-r-special_green">
         <RxHamburgerMenu
           size={30}
           className="text-white"
           onClick={handleClick}
         />
       </div>
+      {nav && (
+        <div
+          className={`${
+            nav
+              ? "bg-black/80 h-full w-[100%] z-0 top-0 left-0 ease-in-out duration-300 fixed lg:hidden"
+              : "fixed left-[-100%]"
+          }`}
+        ></div>
+      )}
       <div
         className={
           nav
-            ? "lg:hidden fixed left-0 top-0 w-[70%] h-full bg-primary border-r border-r-special_green flex flex-col p-5 py-8 z-30 ease-in-out duration-300"
+            ? "lg:hidden fixed left-0 top-0 w-[80%] h-full bg-primary border-r border-r-special_green flex flex-col p-5 py-8 z-30 ease-in-out duration-300"
             : "fixed left-[-100%]"
         }
+        ref={menuRef}
       >
-        <BsXLg size={30} className="text-white" onClick={handleClick} />
+        <div className="flex items-center justify-between">
+          <BsXLg size={30} className="text-white" onClick={handleClick} />
+          <p className="text-white font-bold italic uppercase text-lg underline underline-offset-8">
+            Carbon-Trade
+          </p>
+        </div>
+
         <div>
           <p className="font-medium text-[#454545] my-7">GENERAL</p>
           <div className="space-y-5">
